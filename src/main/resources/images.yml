@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    com:
+      greglturnquist: DEBUG
+    org:
+      springframework:
+        cloud: DEBUG
+        integration: DEBUG
+        amqp: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: learning-spring-boot-comments
+          group: learning-spring-boot
+        output:
+          destination: learning-spring-boot-comments
+          group: comments-service
+  application:
+    name: images
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
